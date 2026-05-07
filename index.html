@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#2563EB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="On Track">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>On Track — Inventory Management</title>
+
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk9uIFRyYWNrIEludmVudG9yeSBNYW5hZ2VyIiwKICAic2hvcnRfbmFtZSI6ICJPbiBUcmFjayIsCiAgImRlc2NyaXB0aW9uIjogIkludmVudG9yeSBtYW5hZ2VtZW50IGZvciBTb3V0aCBBZnJpY2FuIHNwYXphIHNob3BzIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMyNTYzRUIiLAogICJ0aGVtZV9jb2xvciI6ICIjMjU2M0VCIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDEwMCAxMDAnJTNFJTNDcmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgcng9JzI0JyBmaWxsPSclMjMyNTYzRUInLyUzRSUzQ3RleHQgeD0nNTAnIHk9JzY4JyBmb250LXNpemU9JzU2JyBmb250LXdlaWdodD0nODAwJyBmb250LWZhbWlseT0nc2Fucy1zZXJpZicgZmlsbD0nd2hpdGUnIHRleHQtYW5jaG9yPSdtaWRkbGUnJTNFb3QlM0MvdGV4dCUzRSUzQy9zdmclM0UiLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAicHVycG9zZSI6ICJhbnkiCiAgICB9CiAgXSwKICAic2NvcGUiOiAiLiIsCiAgImxhbmciOiAiZW4tWkEiCn0=">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%232563EB'/%3E%3Ctext x='50' y='68' font-size='56' font-weight='800' font-family='sans-serif' fill='white' text-anchor='middle'%3EOT%3C/text%3E%3C/svg%3E">
+
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/dist/html5-qrcode.min.js">
+    </script>
+
+    <style>
+        :root {
+            --trust-blue: #2563EB;
+            --trust-blue-dark: #1D4ED8;
+            --trust-blue-light: #DBEAFE;
+            --trust-blue-50: #EFF6FF;
+            --growth-green: #16A34A;
+            --growth-green-dark: #15803D;
+            --growth-green-light: #DCFCE7;
+            --growth-green-50: #F0FDF4;
+            --white: #FFFFFF;
+            --off-white: #F8FAFC;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --danger: #EF4444;
+            --danger-light: #FEE2E2;
+            --warning: #F59E0B;
+            --warning-light: #FEF3C7;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -2px rgba(0, 0, 0, 0.06);
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            font-size: 16px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        body {
+            font-family: var(--font-sans);
+            background: var(--off-white);
+            color: var(--gray-900);
+            min-height: 100vh;
+            min-height: 100dvh;
+            overscroll-behavior-y: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(160deg, var(--trust-blue) 0%, #1e40af 60%, #1e3a6e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: splashFadeIn 0.5s ease-out;
+        }
+        @keyframes splashFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .splash-logo {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: var(--shadow-xl);
+        }
+        .splash-logo-text {
+            font-size: 40px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -1px;
+        }
+        .splash-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+        .splash-subtitle {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: center;
+            max-width: 280px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        .splash-track-icon {
+            position: absolute;
+            bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .splash-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--growth-green);
+            border-radius: 50%;
+            animation: splashPulse 1.5s infinite ease-in-out;
+        }
+        .splash-dot:nth-child(2) {
+            animation-delay: 0.3s;
+            opacity: 0.6;
+        }
+        .splash-dot:nth-child(3) {
+            animation-delay: 0.6s;
+            opacity: 0.3;
+        }
+        @keyframes splashPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.8);
+            }
+        }
+        #app {
+            display: none;
+            flex-direction: column;
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+        #app.active {
+            display: flex;
+        }
+        .app-header {
+            background: var(--white);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+        .header-logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--trust-blue);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -1px;
+        }
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.3px;
+        }
+        .header-subtitle {
+            font-size: 11px;
+            color: var(--gray-500);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-size: 18px;
+            color: var(--gray-600);
+            position: relative;
+        }
+        .btn-icon:active {
+            background: var(--gray-100);
+            transform: scale(0.95);
+        }
+        .screen {
+            display: none;
+            flex-direction: column;
+            flex: 1;
+            padding: 16px 20px 100px;
+            overflow-y: auto;
+            animation: screenIn 0.3s ease-out;
+        }
+        .screen.active {
+            display: flex;
+        }
+        @keyframes screenIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .auth-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            gap: 24px;
+        }
+        .auth-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .auth-card h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gray-900);
+            text-align: center;
+            letter-spacing: -0.3px;
+        }
+        .auth-card p {
+            font-size: 14px;
+            color: var(--gray-500);
+            text-align: center;
+            line-height: 1.5;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .input-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-700);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .input-row {
+            display: flex;
+            gap: 8px;
+            align-items: stretch;
+        }
+        .input-prefix {
+            display: flex;
+            align-items: center;
+            padding: 0 14px;
+            background: var(--gray-100);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--gray-700);
+            white-space: nowrap;
+            transition: border-color 0.2s;
+        }
+        .input-prefix.focused {
+            border-color: var(--trust-blue);
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-family: var(--font-sans);
+            color: var(--gray-900);
+            background: var(--white);
+            transition: all 0.2s;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        input:focus {
+            border-color: var(--trust-blue);
+            box-shadow: 0 0 0 4px var(--trust-blue-light);
+        }
+        input.error {
+            border-color: var(--danger);
+            box-shadow: 0 0 0 4px var(--danger-light);
+        }
+        .input-error {
+            font-size: 12px;
+            color: var(--danger);
+            font-weight: 500;
+            display: none;
+        }
+        .input-error.show {
+            display: block;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 24px;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            font-family: var(--font-sans);
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            letter-spacing: -0.2px;
+            text-decoration: none;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-primary {
+            background: var(--trust-blue);
+            color: white;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+        }
+        .btn-primary:disabled {
+            background: var(--gray-300);
+            color: var(--gray-500);
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+        .btn-outline {
+            background: var(--white);
+            color: var(--trust-blue);
+            border: 2px solid var(--trust-blue);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--trust-blue);
+            border: none;
+            padding: 10px 16px;
+            font-size: 14px;
+        }
+        .btn-sm {
+            padding: 10px 18px;
+            font-size: 14px;
+            border-radius: var(--radius-sm);
+        }
+        .btn-block {
+            width: 100%;
+        }
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-glass::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-glass:active::after {
+            opacity: 1;
+        }
+        .auth-switch {
+            text-align: center;
+            font-size: 14px;
+            color: var(--gray-500);
+        }
+        .auth-switch a {
+            color: var(--trust-blue);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .otp-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .otp-input {
+            width: 48px;
+            height: 56px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            background: var(--white);
+            transition: all 0.2s;
+            outline: none;
+            font-family: var(--font-sans);
+        }
+        .otp-input:focus {
+            border-color: var(--trust-blue);
+            box-shadow: 0 0 0 4px var(--trust-blue-light);
+        }
+        .otp-input.filled {
+            border-color: var(--growth-green);
+            background: var(--growth-green-50);
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .stat-card .stat-icon {
+            font-size: 24px;
+        }
+        .stat-card .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--gray-900);
+        }
+        .stat-card .stat-label {
+            font-size: 12px;
+            color: var(--gray-500);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .stat-card.accent-blue {
+            border-left: 4px solid var(--trust-blue);
+        }
+        .stat-card.accent-green {
+            border-left: 4px solid var(--growth-green);
+        }
+        .stat-card.accent-warning {
+            border-left: 4px solid var(--warning);
+        }
+        .stat-card.accent-danger {
+            border-left: 4px solid var(--danger);
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-700);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 12px;
+        }
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .quick-action-btn {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 16px;
+            border: 1px solid var(--gray-200);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+        .quick-action-btn:active {
+            transform: scale(0.97);
+            background: var(--trust-blue-50);
+            border-color: var(--trust-blue);
+        }
+        .quick-action-btn .qa-icon {
+            font-size: 28px;
+        }
+        .quick-action-btn .qa-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+        .inventory-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .inventory-count {
+            font-size: 13px;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 10px 14px;
+            margin-bottom: 16px;
+            transition: all 0.2s;
+        }
+        .search-bar:focus-within {
+            border-color: var(--trust-blue);
+            box-shadow: 0 0 0 4px var(--trust-blue-light);
+        }
+        .search-bar input {
+            border: none !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            font-size: 15px;
+            flex: 1;
+        }
+        .search-bar .search-icon {
+            font-size: 18px;
+            color: var(--gray-400);
+        }
+        .inventory-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .inventory-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-100);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.2s;
+        }
+        .item-color-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .item-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .item-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-900);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .item-meta {
+            font-size: 12px;
+            color: var(--gray-400);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+        .item-qty {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .item-qty-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .item-qty-uom {
+            font-size: 11px;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+        .item-actions {
+            display: flex;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        .item-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.2s;
+            background: transparent;
+        }
+        .item-btn.edit-btn {
+            color: var(--trust-blue);
+        }
+        .item-btn.edit-btn:active {
+            background: var(--trust-blue-light);
+        }
+        .item-btn.delete-btn {
+            color: var(--danger);
+        }
+        .item-btn.delete-btn:active {
+            background: var(--danger-light);
+        }
+        .item-btn.restock-btn {
+            color: var(--growth-green);
+            font-size: 14px;
+            font-weight: 700;
+            width: auto;
+            padding: 0 10px;
+            gap: 4px;
+        }
+        .item-btn.restock-btn:active {
+            background: var(--growth-green-light);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 48px 20px;
+            color: var(--gray-400);
+        }
+        .empty-state .empty-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        .empty-state h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 4px;
+        }
+        .empty-state p {
+            font-size: 13px;
+        }
+        .fab {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-full);
+            background: var(--trust-blue);
+            color: white;
+            border: none;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+            cursor: pointer;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 90;
+            transition: all 0.25s;
+        }
+        .fab:active {
+            transform: scale(0.9);
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            z-index: 100;
+            padding: 8px 0 env(safe-area-inset-bottom, 8px);
+            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+        }
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 0;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--gray-400);
+            border: none;
+            background: none;
+            font-family: var(--font-sans);
+        }
+        .nav-item .nav-icon {
+            font-size: 22px;
+        }
+        .nav-item .nav-label {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .nav-item.active {
+            color: var(--trust-blue);
+        }
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 200;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-sheet {
+            background: var(--white);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 24px 20px 32px;
+            animation: sheetUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes sheetUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        .modal-handle {
+            width: 40px;
+            height: 4px;
+            background: var(--gray-300);
+            border-radius: var(--radius-full);
+            margin: 0 auto 20px;
+        }
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--gray-900);
+            letter-spacing: -0.3px;
+        }
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-family: var(--font-sans);
+            color: var(--gray-900);
+            background: var(--white);
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            cursor: pointer;
+            transition: all 0.2s;
+            outline: none;
+        }
+        select:focus {
+            border-color: var(--trust-blue);
+            box-shadow: 0 0 0 4px var(--trust-blue-light);
+        }
+        #scanner-container {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: #000;
+            position: relative;
+        }
+        #scanner-container video {
+            width: 100%;
+            border-radius: var(--radius-lg);
+        }
+        .scanner-frame {
+            position: absolute;
+            inset: 15%;
+            border: 2px solid rgba(37, 99, 235, 0.7);
+            border-radius: var(--radius);
+            pointer-events: none;
+            z-index: 2;
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.4);
+        }
+        .scanner-result {
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--growth-green-50);
+            border-radius: var(--radius);
+            border: 1px solid var(--growth-green-light);
+            text-align: center;
+            font-weight: 600;
+            color: var(--growth-green-dark);
+            font-size: 15px;
+        }
+        .scanner-result.new-item {
+            background: var(--trust-blue-50);
+            border-color: var(--trust-blue-light);
+            color: var(--trust-blue-dark);
+        }
+        .variance-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+        }
+        .variance-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .variance-row:last-child {
+            border-bottom: none;
+        }
+        .variance-label {
+            font-size: 14px;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+        .variance-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .variance-value.positive {
+            color: var(--growth-green);
+        }
+        .variance-value.negative {
+            color: var(--danger);
+        }
+        .variance-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .variance-badge.ok {
+            background: var(--growth-green-light);
+            color: var(--growth-green-dark);
+        }
+        .variance-badge.warn {
+            background: var(--warning-light);
+            color: #92400E;
+        }
+        .variance-badge.bad {
+            background: var(--danger-light);
+            color: #991B1B;
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-120px);
+            background: var(--gray-900);
+            color: white;
+            padding: 14px 24px;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 9999;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+            max-width: 90vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast.success {
+            background: var(--growth-green);
+        }
+        .toast.error {
+            background: var(--danger);
+        }
+        .success-animation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 32px 0;
+        }
+        .success-check {
+            width: 80px;
+            height: 80px;
+            background: var(--growth-green-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        .pwa-install-banner {
+            position: fixed;
+            bottom: 80px;
+            left: 16px;
+            right: 16px;
+            background: var(--trust-blue);
+            color: white;
+            padding: 16px 20px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            animation: sheetUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .pwa-install-banner.show {
+            display: flex;
+        }
+        .pwa-install-banner .pwa-text {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .pwa-install-banner .pwa-btn {
+            background: white;
+            color: var(--trust-blue);
+            padding: 10px 20px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+        .pwa-install-banner .pwa-close {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        @media (min-width: 768px) {
+            .stats-row {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .quick-actions {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .screen {
+                max-width: 600px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="splash-logo"><span class="splash-logo-text">OT</span></div>
+        <div class="splash-title">On Track</div>
+        <div class="splash-subtitle">Welcome, Now you're On Track.<br>The first step you take before you start your day.</div>
+        <div class="splash-track-icon">
+            <div class="splash-dot"></div><div class="splash-dot"></div><div class="splash-dot"></div>
+        </div>
+    </div>
+
+    <div id="app">
+        <header class="app-header">
+            <div class="header-logo-area">
+                <div class="header-logo-icon">OT</div>
+                <div>
+                    <div class="header-title">On Track</div>
+                    <div class="header-subtitle">Inventory Manager</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-icon" onclick="openScanner()">📷</button>
+                <button class="btn-icon" onclick="handleLogout()">🚪</button>
+            </div>
+        </header>
+
+        <div id="screen-login" class="screen active">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h2>🔐 Sign In</h2>
+                    <p>Welcome back to <strong>On Track</strong>.</p>
+                    <div class="input-group">
+                        <label>SA Mobile Number</label>
+                        <div class="input-row">
+                            <div class="input-prefix" id="login-prefix">+27</div>
+                            <input type="tel" id="login-phone" placeholder="82 123 4567" maxlength="9" inputmode="numeric">
+                        </div>
+                        <span class="input-error" id="login-phone-error">Enter a valid SA mobile number</span>
+                    </div>
+                    <div class="input-group">
+                        <label>4-Digit PIN</label>
+                        <input type="password" id="login-pin" placeholder="••••" maxlength="4" inputmode="numeric">
+                        <span class="input-error" id="login-pin-error">PIN must be 4 digits</span>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="handleLogin()">Sign In</button>
+                </div>
+                <div class="auth-switch">
+                    Don't have an account? <a onclick="showScreen('screen-register')">Register here</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-register" class="screen">
+            <div class="auth-container">
+                <div id="reg-step-1" class="auth-card">
+                    <h2>📝 Register</h2>
+                    <p>Join <strong>On Track</strong> and take control of your inventory.</p>
+                    <div class="input-group">
+                        <label>SA Mobile Number</label>
+                        <div class="input-row">
+                            <div class="input-prefix" id="reg-prefix">+27</div>
+                            <input type="tel" id="reg-phone" placeholder="82 123 4567" maxlength="9" inputmode="numeric">
+                        </div>
+                        <span class="input-error" id="reg-phone-error">Enter a valid SA mobile number</span>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="handleSendOTP()">Send Verification Code</button>
+                </div>
+                <div id="reg-step-2" class="auth-card" style="display:none;">
+                    <h2>📱 Verify OTP</h2>
+                    <p>We sent a 6-digit code to <strong id="reg-phone-display"></strong></p>
+                    <div class="otp-container" id="otp-container">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" data-index="0">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" data-index="1">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" data-index="2">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" data-index="3">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" data-index="4">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" data-index="5">
+                    </div>
+                    <span class="input-error" id="otp-error">Invalid OTP.</span>
+                    <button class="btn btn-primary btn-block" onclick="handleVerifyOTP()">Verify Code</button>
+                    <button class="btn btn-ghost btn-block" onclick="handleSendOTP()">Resend Code</button>
+                </div>
+                <div id="reg-step-3" class="auth-card" style="display:none;">
+                    <h2>🔒 Set Your PIN</h2>
+                    <p>Create a 4-digit PIN for quick login.</p>
+                    <div class="input-group"><label>4-Digit PIN</label><input type="password" id="reg-pin" placeholder="••••" maxlength="4" inputmode="numeric"></div>
+                    <div class="input-group"><label>Confirm PIN</label><input type="password" id="reg-pin-confirm" placeholder="••••" maxlength="4" inputmode="numeric"></div>
+                    <span class="input-error" id="reg-pin-error">PINs must match</span>
+                    <button class="btn btn-primary btn-block" onclick="handleSetPIN()">Complete Registration</button>
+                </div>
+                <div class="auth-switch">
+                    Already have an account? <a onclick="showScreen('screen-login')">Sign in</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-reg-success" class="screen">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <div class="success-animation">
+                        <div class="success-check">✅</div>
+                        <h2>We're happy to have you On Track with us.</h2>
+                    </div>
+                    <button class="btn btn-primary btn-block btn-glass" onclick="goToDashboard()">
+                        Press here to view our Inventory page
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-dashboard" class="screen">
+            <div class="stats-row">
+                <div class="stat-card accent-blue"><div class="stat-icon">📦</div><div class="stat-value" id="stat-total-items">0</div><div class="stat-label">Total Items</div></div>
+                <div class="stat-card accent-green"><div class="stat-icon">📥</div><div class="stat-value" id="stat-total-stock">0</div><div class="stat-label">Total Stock</div></div>
+                <div class="stat-card accent-warning"><div class="stat-icon">⚠️</div><div class="stat-value" id="stat-variances">0</div><div class="stat-label">Variances</div></div>
+                <div class="stat-card accent-danger"><div class="stat-icon">📉</div><div class="stat-value" id="stat-low-stock">0</div><div class="stat-label">Low Stock</div></div>
+            </div>
+            <div class="section-title">Quick Actions</div>
+            <div class="quick-actions">
+                <div class="quick-action-btn" onclick="navigateTo('screen-inventory')"><div class="qa-icon">📋</div><div class="qa-label">View Inventory</div></div>
+                <div class="quick-action-btn" onclick="openAddItemModal()"><div class="qa-icon">➕</div><div class="qa-label">Add Item</div></div>
+                <div class="quick-action-btn" onclick="navigateTo('screen-stock-count')"><div class="qa-icon">🔍</div><div class="qa-label">Stock Count</div></div>
+                <div class="quick-action-btn" onclick="openScanner()"><div class="qa-icon">📷</div><div class="qa-label">Scan Barcode</div></div>
+            </div>
+            <button class="btn btn-primary btn-block btn-glass" onclick="navigateTo('screen-inventory')">📊 Check Inventory</button>
+        </div>
+
+        <div id="screen-inventory" class="screen">
+            <div class="inventory-header-bar">
+                <div class="section-title" style="margin-bottom:0;">📋 Inventory</div>
+                <div class="inventory-count" id="inventory-count-label">0 items</div>
+            </div>
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="inventory-search" placeholder="Search items..." oninput="renderInventory()">
+            </div>
+            <div class="inventory-list" id="inventory-list-container">
+                <div class="empty-state"><div class="empty-icon">📭</div><h3>No items yet</h3><p>Tap + to add your first item</p></div>
+            </div>
+        </div>
+
+        <div id="screen-stock-count" class="screen">
+            <div class="section-title">🔍 Stock Count & Variance</div>
+            <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px;">Select an item and enter the physical count.</p>
+            <div class="input-group" style="margin-bottom:16px;">
+                <label>Select Item</label>
+                <select id="variance-item-select" onchange="updateVariancePreview()">
+                    <option value="">-- Choose an item --</option>
+                </select>
+            </div>
+            <div class="variance-card" id="variance-card" style="display:none;">
+                <div class="variance-row"><span class="variance-label">System Stock (Received - Sold)</span><span class="variance-value" id="var-system-stock">0</span></div>
+                <div class="variance-row"><span class="variance-label">Physical Count</span><span class="variance-value"><input type="number" id="var-physical-count" placeholder="Enter count" style="width:120px;text-align:right;padding:8px 12px;font-size:14px;" oninput="updateVariancePreview()"></span></div>
+                <div class="variance-row" style="background:var(--gray-50);border-radius:var(--radius-sm);padding:12px;"><span class="variance-label" style="font-weight:700;">VARIANCE</span><span class="variance-value" id="var-variance-display">—</span></div>
+                <div style="text-align:center;margin-top:4px;"><span class="variance-badge" id="var-badge" style="display:none;"></span></div>
+            </div>
+            <button class="btn btn-primary btn-block" id="btn-save-variance" onclick="saveVariance()" disabled>✅ Save Stock Count</button>
+        </div>
+
+        <div id="screen-scanner" class="screen">
+            <div class="section-title">📷 Barcode Scanner</div>
+            <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px;">Point camera at an EAN-13 barcode.</p>
+            <div id="scanner-container"></div>
+            <div style="display:flex;gap:8px;margin-top:12px;">
+                <button class="btn btn-outline btn-block btn-sm" id="btn-start-scan" onclick="startScanner()">▶ Start Scanner</button>
+                <button class="btn btn-ghost btn-block btn-sm" id="btn-stop-scan" onclick="stopScanner()" style="display:none;">⏹ Stop</button>
+            </div>
+            <div id="scanner-result-area" style="display:none;"></div>
+        </div>
+
+        <button class="fab" id="fab-add" onclick="openAddItemModal()">+</button>
+
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-screen="screen-dashboard" onclick="navigateTo('screen-dashboard')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
+            <button class="nav-item" data-screen="screen-inventory" onclick="navigateTo('screen-inventory')"><span class="nav-icon">📋</span><span class="nav-label">Inventory</span></button>
+            <button class="nav-item" data-screen="screen-stock-count" onclick="navigateTo('screen-stock-count')"><span class="nav-icon">🔍</span><span class="nav-label">Count</span></button>
+            <button class="nav-item" data-screen="screen-scanner" onclick="navigateTo('screen-scanner')"><span class="nav-icon">📷</span><span class="nav-label">Scan</span></button>
+        </nav>
+    </div>
+
+    <div class="modal-overlay" id="modal-item">
+        <div class="modal-sheet">
+            <div class="modal-handle"></div>
+            <div class="modal-title" id="modal-item-title">➕ Add New Item</div>
+            <div class="modal-form">
+                <div class="input-group"><label>Item Name *</label><input type="text" id="add-item-name" placeholder="e.g., Maize Meal 5kg"></div>
+                <div class="input-group"><label>Unit of Measure (UoM) *</label>
+                    <select id="add-item-uom">
+                        <option value="">-- Select UoM --</option>
+                        <option value="g">Grams (g)</option><option value="kg">Kilograms (kg)</option>
+                        <option value="ml">Millilitres (ml)</option><option value="L">Litres (L)</option>
+                        <option value="ea">Each (ea)</option><option value="pk">Pack (pk)</option>
+                        <option value="cs">Case (cs)</option><option value="dz">Dozen (dz)</option>
+                    </select>
+                </div>
+                <div class="input-group"><label>Initial Qty on Hand</label><input type="number" id="add-item-qty" placeholder="0" min="0" value="0"></div>
+                <div class="input-group"><label>Barcode (EAN-13)</label><input type="text" id="add-item-barcode" placeholder="e.g., 6001234567890" maxlength="13"></div>
+                <input type="hidden" id="edit-item-id" value="">
+                <div style="display:flex;gap:8px;">
+                    <button class="btn btn-outline btn-block btn-sm" onclick="closeModal('modal-item')">Cancel</button>
+                    <button class="btn btn-primary btn-block btn-sm" onclick="saveItem()">Save Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-restock">
+        <div class="modal-sheet">
+            <div class="modal-handle"></div>
+            <div class="modal-title">📥 Add New Stock</div>
+            <div class="modal-form">
+                <p style="text-align:center;font-size:14px;color:var(--gray-600);" id="restock-item-name-display"></p>
+                <div class="variance-row"><span class="variance-label">Current Stock</span><span class="variance-value" id="restock-current-stock">0</span></div>
+                <div class="input-group"><label>Qty to Add</label><input type="number" id="restock-qty" placeholder="0" min="1" value="1"></div>
+                <input type="hidden" id="restock-item-id" value="">
+                <div style="display:flex;gap:8px;">
+                    <button class="btn btn-outline btn-block btn-sm" onclick="closeModal('modal-restock')">Cancel</button>
+                    <button class="btn btn-primary btn-block btn-sm" onclick="confirmRestock()">Add Stock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-sale">
+        <div class="modal-sheet">
+            <div class="modal-handle"></div>
+            <div class="modal-title">💰 Record Sale</div>
+            <div class="modal-form">
+                <p style="text-align:center;font-size:14px;color:var(--gray-600);" id="sale-item-name-display"></p>
+                <div class="variance-row"><span class="variance-label">Current Stock</span><span class="variance-value" id="sale-current-stock">0</span></div>
+                <div class="input-group"><label>Qty Sold</label><input type="number" id="sale-qty" placeholder="0" min="1" value="1"></div>
+                <input type="hidden" id="sale-item-id" value="">
+                <div style="display:flex;gap:8px;">
+                    <button class="btn btn-outline btn-block btn-sm" onclick="closeModal('modal-sale')">Cancel</button>
+                    <button class="btn btn-primary btn-block btn-sm" onclick="confirmSale()">Record Sale</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pwa-install-banner" id="pwa-install-banner">
+        <span>📱</span>
+        <span class="pwa-text">Install <strong>On Track</strong> on your phone for quick access</span>
+        <button class="pwa-btn" id="pwa-install-btn">Install</button>
+        <button class="pwa-close" id="pwa-close-btn">✕</button>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- ==================== SERVICE WORKER (SAFE) ==================== -->
+    <script>
+        (function() {
+            try {
+                if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
+                    const swCode = `
+                        const CACHE_NAME = 'ontrack-v3';
+                        const ASSETS = [self.location.href];
+                        self.addEventListener('install', (event) => {
+                            event.waitUntil(
+                                caches.open(CACHE_NAME).then((cache) => {
+                                    return cache.addAll(ASSETS);
+                                }).then(() => self.skipWaiting())
+                            );
+                        });
+                        self.addEventListener('activate', (event) => {
+                            event.waitUntil(
+                                caches.keys().then((keys) => {
+                                    return Promise.all(
+                                        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+                                    );
+                                }).then(() => self.clients.claim())
+                            );
+                        });
+                        self.addEventListener('fetch', (event) => {
+                            if (event.request.method !== 'GET') return;
+                            if (event.request.mode === 'navigate') {
+                                event.respondWith(
+                                    fetch(event.request).catch(() => caches.match(event.request))
+                                );
+                            } else {
+                                event.respondWith(
+                                    caches.match(event.request).then((cached) => cached || fetch(event.request))
+                                );
+                            }
+                        });
+                    `;
+                    const blob = new Blob([swCode], { type: 'application/javascript' });
+                    const swUrl = URL.createObjectURL(blob);
+                    navigator.serviceWorker.register(swUrl, { scope: '/' })
+                        .then(() => console.log('✅ Service Worker registered — offline ready'))
+                        .catch((err) => console.warn('⚠️ SW registration skipped:', err.message));
+                }
+            } catch (e) {
+                console.warn('⚠️ Service workers unavailable in this environment. App works without offline mode.');
+            }
+        })();
+    </script>
+
+    <!-- ==================== MAIN APP LOGIC ==================== -->
+    <script>
+        (function() {
+            const SafeStorage = (function() {
+                let memoryStore = {};
+                let storageAvailable = false;
+
+                function testStorage() {
+                    try { const k = '__ot__';
+                        localStorage.setItem(k, '1');
+                        localStorage.removeItem(k); return true; } catch (e) { return false; }
+                }
+                storageAvailable = testStorage();
+                if (!storageAvailable) console.warn('⚠️ Using in-memory storage. Data will not persist on refresh.');
+                else console.log('✅ Using localStorage.');
+
+                return {
+                    getItem: function(k) {
+                        if (storageAvailable) { try { return localStorage.getItem(k); } catch (e) {} }
+                        return memoryStore[k] || null;
+                    },
+                    setItem: function(k, v) {
+                        if (storageAvailable) { try { localStorage.setItem(k, v); return; } catch (e) {} }
+                        memoryStore[k] = v;
+                    },
+                    removeItem: function(k) {
+                        if (storageAvailable) { try { localStorage.removeItem(k); return; } catch (e) {} }
+                        delete memoryStore[k];
+                    },
+                    isPersistent: function() { return storageAvailable; }
+                };
+            })();
+
+            const APP = {
+                currentUser: null,
+                currentOTP: null,
+                regPhone: null,
+                inventory: [],
+                nextId: 1,
+                users: {},
+                scannerInstance: null,
+                isScanning: false,
+            };
+
+            function loadAppState() {
+                try {
+                    const s = SafeStorage.getItem('ontrack_app');
+                    if (s) { const d = JSON.parse(s);
+                        APP.inventory = d.inventory || [];
+                        APP.nextId = d.nextId || 1;
+                        APP.users = d.users || {}; } else { APP.inventory = [];
+                        APP.nextId = 1;
+                        APP.users = {}; }
+                } catch (e) { APP.inventory = [];
+                    APP.nextId = 1;
+                    APP.users = {}; }
+            }
+
+            function saveAppState() {
+                try { SafeStorage.setItem('ontrack_app', JSON.stringify({ inventory: APP.inventory, nextId: APP.nextId,
+                        users: APP.users })); } catch (e) {}
+            }
+
+            const ITEM_COLORS = ['#2563EB', '#16A34A', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899', '#06B6D4', '#F97316',
+                '#14B8A6', '#6366F1', '#84CC16', '#D946EF', '#0EA5E9', '#E11D48', '#10B981'
+            ];
+
+            function getRandomColor() { return ITEM_COLORS[Math.floor(Math.random() * ITEM_COLORS.length)]; }
+
+            function showToast(m, t) {
+                t = t || '';
+                const el = document.getElementById('toast');
+                if (!el) return;
+                el.textContent = m;
+                el.className = 'toast ' + t + ' show';
+                clearTimeout(el._timeout);
+                el._timeout = setTimeout(function() { el.classList.remove('show'); }, 2800);
+            }
+
+            function escapeHTML(s) { const d = document.createElement('div');
+                d.textContent = s; return d.innerHTML; }
+
+            function initApp() {
+                loadAppState();
+                setTimeout(function() {
+                    const splash = document.getElementById('splash-screen');
+                    if (splash) {
+                        splash.style.transition = 'opacity 0.6s ease-out';
+                        splash.style.opacity = '0';
+                        setTimeout(function() {
+                            splash.style.display = 'none';
+                            const a = document.getElementById('app');
+                            if (a) a.classList.add('active');
+                            const sess = SafeStorage.getItem('ontrack_session');
+                            if (sess) { try { APP.currentUser = JSON.parse(sess);
+                                    goToDashboard(); } catch (e) { showScreen('screen-login'); } } else
+                            showScreen('screen-login');
+                        }, 600);
+                    }
+                }, 2800);
+                setupOTPInputs();
+                setupPrefixFocus();
+                setupPWAInstall();
+            }
+
+            function setupPrefixFocus() {
+                ['login-phone', 'reg-phone'].forEach(function(id) {
+                    const inp = document.getElementById(id);
+                    if (!inp) return;
+                    inp.addEventListener('focus', function() {
+                        const pid = id === 'login-phone' ? 'login-prefix' : 'reg-prefix';
+                        const p = document.getElementById(pid);
+                        if (p) p.classList.add('focused');
+                    });
+                    inp.addEventListener('blur', function() {
+                        const pid = id === 'login-phone' ? 'login-prefix' : 'reg-prefix';
+                        const p = document.getElementById(pid);
+                        if (p) p.classList.remove('focused');
+                    });
+                });
+            }
+
+            let deferredPrompt = null;
+
+            function setupPWAInstall() {
+                const banner = document.getElementById('pwa-install-banner');
+                const installBtn = document.getElementById('pwa-install-btn');
+                const closeBtn = document.getElementById('pwa-close-btn');
+
+                window.addEventListener('beforeinstallprompt', function(e) {
+                    e.preventDefault();
+                    deferredPrompt = e;
+                    if (banner && !SafeStorage.getItem('ontrack_pwa_dismissed')) {
+                        setTimeout(function() { banner.classList.add('show'); }, 3000);
+                    }
+                });
+
+                if (installBtn) {
+                    installBtn.addEventListener('click', function() {
+                        if (deferredPrompt) {
+                            deferredPrompt.prompt();
+                            deferredPrompt.userChoice.then(function(result) {
+                                console.log('PWA install:', result.outcome);
+                                deferredPrompt = null;
+                            });
+                        }
+                        if (banner) banner.classList.remove('show');
+                    });
+                }
+
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        if (banner) banner.classList.remove('show');
+                        SafeStorage.setItem('ontrack_pwa_dismissed', '1');
+                    });
+                }
+
+                window.addEventListener('appinstalled', function() {
+                    if (banner) banner.classList.remove('show');
+                    console.log('✅ PWA installed!');
+                });
+            }
+
+            function showScreen(sid) {
+                document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+                const sc = document.getElementById(sid);
+                if (sc) sc.classList.add('active');
+
+                document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+                const nm = { 'screen-dashboard': 'screen-dashboard', 'screen-inventory': 'screen-inventory',
+                    'screen-stock-count': 'screen-stock-count', 'screen-scanner': 'screen-scanner',
+                    'screen-login': null, 'screen-register': null, 'screen-reg-success': null };
+                const ns = nm[sid];
+                if (ns) { const ni = document.querySelector('.nav-item[data-screen="' + ns + '"]'); if (ni) ni
+                        .classList.add('active'); }
+
+                const fab = document.getElementById('fab-add');
+                if (fab) {
+                    if (['screen-inventory', 'screen-dashboard'].indexOf(sid) >= 0 && APP.currentUser) fab.style
+                        .display = 'flex';
+                    else if (sid === 'screen-stock-count' || sid === 'screen-scanner') fab.style.display = 'none';
+                    else if (!APP.currentUser) fab.style.display = 'none';
+                    else fab.style.display = 'flex';
+                }
+
+                if (sid !== 'screen-scanner' && APP.isScanning) stopScanner();
+                if (sid === 'screen-stock-count') populateVarianceSelect();
+                if (sid === 'screen-inventory') renderInventory();
+                if (sid === 'screen-dashboard') updateDashboardStats();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function navigateTo(sid) {
+                if (!APP.currentUser && ['screen-login', 'screen-register', 'screen-reg-success'].indexOf(sid) < 0) {
+                    showScreen('screen-login');
+                    showToast('Please sign in first.', 'error');
+                    return;
+                }
+                showScreen(sid);
+            }
+
+            function isValidSAPhone(p) {
+                const c = p.replace(/[\s\-]/g, '');
+                if (!/^\d{9}$/.test(c)) return false;
+                const vp = ['60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70', '71', '72', '73', '74',
+                    '75', '76', '77', '78', '79', '80', '81', '82', '83', '84', '85', '86', '87', '88', '89'
+                ];
+                return vp.indexOf(c.substring(0, 2)) >= 0;
+            }
+
+            function getFullPhone(p) { return '+27' + p.replace(/[\s\-]/g, ''); }
+
+            function handleLogin() {
+                const pi = document.getElementById('login-phone');
+                const pni = document.getElementById('login-pin');
+                const pe = document.getElementById('login-phone-error');
+                const pne = document.getElementById('login-pin-error');
+                if (!pi || !pni) return;
+                const p = pi.value.trim();
+                const pn = pni.value.trim();
+                if (pe) { pe.classList.remove('show');
+                    pi.classList.remove('error'); }
+                if (pne) { pne.classList.remove('show');
+                    pni.classList.remove('error'); }
+                let v = true;
+                if (!isValidSAPhone(p)) { if (pe) { pe.classList.add('show');
+                        pi.classList.add('error'); }
+                    v = false; }
+                if (!/^\d{4}$/.test(pn)) { if (pne) { pne.classList.add('show');
+                        pni.classList.add('error'); }
+                    v = false; }
+                if (!v) return;
+                const fp = getFullPhone(p);
+                if (!APP.users[fp]) { showToast('No account found. Please register.', 'error'); return; }
+                if (APP.users[fp].pin !== pn) { showToast('Incorrect PIN.', 'error');
+                    pni.classList.add('error'); return; }
+                APP.currentUser = { phone: fp, pin: pn };
+                SafeStorage.setItem('ontrack_session', JSON.stringify(APP.currentUser));
+                showToast('Welcome back!', 'success');
+                goToDashboard();
+            }
+
+            function handleSendOTP() {
+                const pi = document.getElementById('reg-phone');
+                const pe = document.getElementById('reg-phone-error');
+                if (!pi) return;
+                const p = pi.value.trim();
+                if (pe) { pe.classList.remove('show');
+                    pi.classList.remove('error'); }
+                if (!isValidSAPhone(p)) { if (pe) { pe.classList.add('show');
+                        pi.classList.add('error'); } return; }
+                const fp = getFullPhone(p);
+                if (APP.users[fp]) { showToast('Already registered. Please sign in.', 'error'); return; }
+                APP.currentOTP = String(Math.floor(100000 + Math.random() * 900000));
+                APP.regPhone = fp;
+                showToast('Demo OTP: ' + APP.currentOTP + ' (SMS in production)', 'success');
+                const s1 = document.getElementById('reg-step-1');
+                const s2 = document.getElementById('reg-step-2');
+                if (s1) s1.style.display = 'none';
+                if (s2) s2.style.display = '';
+                const d = document.getElementById('reg-phone-display');
+                if (d) d.textContent = fp;
+                const oe = document.getElementById('otp-error');
+                if (oe) oe.classList.remove('show');
+                const ois = document.querySelectorAll('#otp-container .otp-input');
+                ois.forEach(function(i) { i.value = ''; });
+                if (ois.length > 0) ois[0].focus();
+            }
+
+            function setupOTPInputs() {
+                const c = document.getElementById('otp-container');
+                if (!c) return;
+                const inputs = c.querySelectorAll('.otp-input');
+                inputs.forEach(function(inp, idx) {
+                    inp.addEventListener('input', function(e) { if (e.target.value && idx < inputs.length - 1)
+                            inputs[idx + 1].focus();
+                        updateOTPVisuals(); });
+                    inp.addEventListener('keydown', function(e) { if (e.key === 'Backspace' && !inp.value &&
+                            idx > 0) inputs[idx - 1].focus(); });
+                    inp.addEventListener('paste', function(e) {
+                        e.preventDefault();
+                        const paste = (e.clipboardData || window.clipboardData).getData('text');
+                        const digits = paste.replace(/\D/g, '').slice(0, 6).split('');
+                        inputs.forEach(function(inn, i) { if (digits[i]) inn.value = digits[i]; });
+                        updateOTPVisuals();
+                        const fi = Math.min(digits.length, 5);
+                        if (inputs[fi]) inputs[fi].focus();
+                    });
+                });
+            }
+
+            function updateOTPVisuals() { document.querySelectorAll('#otp-container .otp-input').forEach(function(i) { if (i
+                        .value) i.classList.add('filled');
+                    else i.classList.remove('filled'); }); }
+
+            function getOTPValue() { let r = '';
+                document.querySelectorAll('#otp-container .otp-input').forEach(function(i) { r += i.value; }); return r; }
+
+            function handleVerifyOTP() {
+                const oe = document.getElementById('otp-error');
+                if (oe) oe.classList.remove('show');
+                const otp = getOTPValue();
+                if (otp.length !== 6) { if (oe) { oe.textContent = 'Enter all 6 digits.';
+                        oe.classList.add('show'); } return; }
+                if (otp !== APP.currentOTP) { if (oe) { oe.textContent = 'Invalid OTP.';
+                        oe.classList.add('show'); } return; }
+                const s2 = document.getElementById('reg-step-2');
+                const s3 = document.getElementById('reg-step-3');
+                if (s2) s2.style.display = 'none';
+                if (s3) s3.style.display = '';
+                const pe = document.getElementById('reg-pin-error');
+                if (pe) pe.classList.remove('show');
+            }
+
+            function handleSetPIN() {
+                const pi = document.getElementById('reg-pin');
+                const pc = document.getElementById('reg-pin-confirm');
+                const pe = document.getElementById('reg-pin-error');
+                if (!pi || !pc) return;
+                const p = pi.value.trim();
+                const c = pc.value.trim();
+                if (pe) pe.classList.remove('show');
+                if (!/^\d{4}$/.test(p)) { if (pe) { pe.textContent = 'PIN must be 4 digits.';
+                        pe.classList.add('show'); } return; }
+                if (p !== c) { if (pe) { pe.textContent = 'PINs do not match.';
+                        pe.classList.add('show'); } return; }
+                APP.users[APP.regPhone] = { pin: p, createdAt: new Date().toISOString() };
+                saveAppState();
+                APP.currentUser = { phone: APP.regPhone, pin: p };
+                SafeStorage.setItem('ontrack_session', JSON.stringify(APP.currentUser));
+                showScreen('screen-reg-success');
+                APP.currentOTP = null;
+                APP.regPhone = null;
+                ['reg-step-1', 'reg-step-2', 'reg-step-3'].forEach(function(id, i) { const el = document.getElementById(
+                        id); if (el) el.style.display = i === 0 ? '' : 'none'; });
+                ['reg-phone', 'reg-pin', 'reg-pin-confirm'].forEach(function(id) { const el = document.getElementById(
+                        id); if (el) el.value = ''; });
+            }
+
+            function goToDashboard() { seedDemoData();
+                updateDashboardStats();
+                renderInventory();
+                showScreen('screen-dashboard');
+                const fab = document.getElementById('fab-add'); if (fab) fab.style.display = 'flex'; }
+
+            function handleLogout() {
+                APP.currentUser = null;
+                SafeStorage.removeItem('ontrack_session');
+                stopScanner();
+                const fab = document.getElementById('fab-add'); if (fab) fab.style.display = 'none';
+                showScreen('screen-login');
+                showToast('Signed out.', 'success');
+            }
+
+            function updateDashboardStats() {
+                const inv = APP.inventory;
+                const ti = document.getElementById('stat-total-items');
+                const ts = document.getElementById('stat-total-stock');
+                const tv = document.getElementById('stat-variances');
+                const tl = document.getElementById('stat-low-stock');
+                if (ti) ti.textContent = inv.length;
+                if (ts) ts.textContent = inv.reduce(function(s, i) { return s + i.qtyOnHand; }, 0);
+                if (tv) tv.textContent = inv.filter(function(i) { return i.lastVariance !== undefined && i
+                    .lastVariance !== null && i.lastVariance !== 0; }).length;
+                if (tl) tl.textContent = inv.filter(function(i) { return i.qtyOnHand <= 5; }).length;
+            }
+
+            function renderInventory() {
+                const c = document.getElementById('inventory-list-container');
+                if (!c) return;
+                const st = (document.getElementById('inventory-search') ? document.getElementById('inventory-search')
+                    .value : '').toLowerCase();
+                let f = APP.inventory;
+                if (st) f = APP.inventory.filter(function(i) { return i.name.toLowerCase().indexOf(st) >= 0 || (i
+                        .barcode && i.barcode.indexOf(st) >= 0); });
+                const cl = document.getElementById('inventory-count-label');
+                if (cl) cl.textContent = f.length + ' item' + (f.length !== 1 ? 's' : '');
+                if (f.length === 0) { c.innerHTML =
+                        '<div class="empty-state"><div class="empty-icon">📭</div><h3>' + (st ? 'No matches' :
+                            'No items') + '</h3><p>' + (st ? 'Try another search.' :
+                            'Tap + to add your first item.') + '</p></div>'; return; }
+                c.innerHTML = f.map(function(item) {
+                    let vb = '';
+                    if (item.lastVariance !== undefined && item.lastVariance !== null) {
+                        if (item.lastVariance === 0) vb =
+                            '<span style="font-size:10px;color:var(--growth-green);">✓</span>';
+                        else { const s = item.lastVariance > 0 ? '+' : '';
+                            vb = '<span style="font-size:10px;color:' + (item.lastVariance > 0 ?
+                                'var(--growth-green)' : 'var(--danger)') + ';">' + s + item.lastVariance +
+                                '</span>'; }
+                    }
+                    return '<div class="inventory-item"><div class="item-color-dot" style="background:' + (item
+                        .color || getRandomColor()) + ';"></div><div class="item-info" style="cursor:pointer;" onclick="openItemActions(\'' +
+                        item.id + '\')"><div class="item-name">' + escapeHTML(item.name) + ' ' + vb +
+                        '</div><div class="item-meta">UoM: ' + item.uom + (item.barcode ? ' · Barcode: ' + item
+                            .barcode : '') +
+                        '</div></div><div class="item-qty"><div class="item-qty-value">' + item.qtyOnHand +
+                        '</div><div class="item-qty-uom">' + item.uom +
+                        '</div></div><div class="item-actions"><button class="item-btn restock-btn" onclick="event.stopPropagation(); openRestockModal(\'' +
+                        item.id +
+                        '\')">📥+</button><button class="item-btn edit-btn" onclick="event.stopPropagation(); openEditItemModal(\'' +
+                        item.id +
+                        '\')">✏️</button><button class="item-btn delete-btn" onclick="event.stopPropagation(); deleteItem(\'' +
+                        item.id + '\')">🗑️</button></div></div>';
+                }).join('');
+                updateDashboardStats();
+            }
+
+            function openItemActions(itemId) {
+                const item = APP.inventory.find(function(i) { return i.id === itemId; });
+                if (!item) return;
+                if (confirm(item.name + '\nStock: ' + item.qtyOnHand + ' ' + item.uom +
+                        '\n\nOK = Record Sale\nCancel = Close')) openSaleModal(itemId);
+            }
+
+            function openModal(mid) { const m = document.getElementById(mid); if (m) { m.classList.add('active');
+                    document.body.style.overflow = 'hidden'; } }
+
+            function closeModal(mid) { const m = document.getElementById(mid); if (m) { m.classList.remove('active');
+                    document.body.style.overflow = ''; } }
+            document.querySelectorAll('.modal-overlay').forEach(function(o) { o.addEventListener('click', function(e) { if (
+                        e.target === this) closeModal(this.id); }); });
+
+            function openAddItemModal() {
+                document.getElementById('modal-item-title').textContent = '➕ Add New Item';
+                document.getElementById('add-item-name').value = '';
+                document.getElementById('add-item-uom').value = '';
+                document.getElementById('add-item-qty').value = '0';
+                document.getElementById('add-item-barcode').value = '';
+                document.getElementById('edit-item-id').value = '';
+                openModal('modal-item');
+                setTimeout(function() { document.getElementById('add-item-name').focus(); }, 350);
+            }
+
+            function openEditItemModal(itemId) {
+                const item = APP.inventory.find(function(i) { return i.id === itemId; });
+                if (!item) return;
+                document.getElementById('modal-item-title').textContent = '✏️ Edit Item';
+                document.getElementById('add-item-name').value = item.name;
+                document.getElementById('add-item-uom').value = item.uom;
+                document.getElementById('add-item-qty').value = item.qtyOnHand;
+                document.getElementById('add-item-barcode').value = item.barcode || '';
+                document.getElementById('edit-item-id').value = itemId;
+                openModal('modal-item');
+            }
+
+            function saveItem() {
+                const name = document.getElementById('add-item-name').value.trim();
+                const uom = document.getElementById('add-item-uom').value;
+                const qty = parseInt(document.getElementById('add-item-qty').value) || 0;
+                const barcode = document.getElementById('add-item-barcode').value.trim();
+                const editId = document.getElementById('edit-item-id').value;
+                if (!name) { showToast('Enter item name.', 'error'); return; }
+                if (!uom) { showToast('Select a UoM.', 'error'); return; }
+                if (editId) {
+                    const item = APP.inventory.find(function(i) { return i.id === editId; });
+                    if (item) { item.name = name;
+                        item.uom = uom;
+                        item.qtyOnHand = qty;
+                        item.stockReceived = qty;
+                        item.stockSold = 0;
+                        item.barcode = barcode; }
+                    showToast('Item updated! ✅', 'success');
+                } else {
+                    APP.inventory.push({ id: String(APP.nextId++), name: name, uom: uom, qtyOnHand: qty,
+                        stockReceived: qty, stockSold: 0, barcode: barcode, color: getRandomColor(),
+                        createdAt: new Date().toISOString(), lastVariance: null });
+                    showToast('Item added! ✅', 'success');
+                }
+                saveAppState();
+                closeModal('modal-item');
+                renderInventory();
+                updateDashboardStats();
+            }
+
+            function deleteItem(itemId) {
+                const item = APP.inventory.find(function(i) { return i.id === itemId; });
+                if (!item) return;
+                if (confirm('Delete "' + item.name + '"?\nCannot be undone.')) { APP.inventory = APP.inventory.filter(
+                        function(i) { return i.id !== itemId; });
+                    saveAppState();
+                    renderInventory();
+                    updateDashboardStats();
+                    showToast('Deleted. 🗑️', 'success'); }
+            }
+
+            function openRestockModal(itemId) {
+                const item = APP.inventory.find(function(i) { return i.id === itemId; });
+                if (!item) return;
+                document.getElementById('restock-item-name-display').textContent = item.name;
+                document.getElementById('restock-current-stock').textContent = item.qtyOnHand + ' ' + item.uom;
+                document.getElementById('restock-qty').value = '1';
+                document.getElementById('restock-item-id').value = itemId;
+                openModal('modal-restock');
+                setTimeout(function() { const q = document.getElementById('restock-qty');
+                    q.focus();
+                    q.select(); }, 350);
+            }
+
+            function confirmRestock() {
+                const itemId = document.getElementById('restock-item-id').value;
+                const qty = parseInt(document.getElementById('restock-qty').value) || 0;
+                const item = APP.inventory.find(function(i) { return i.id === itemId; });
+                if (!item || qty <= 0) { showToast('Enter valid qty.', 'error'); return; }
+                item.qtyOnHand += qty;
+                item.stockReceived += qty;
+                saveAppState();
+                closeModal('modal-restock');
+                renderInventory();
+                updateDashboardStats();
+                showToast('Added ' + qty + ' ' + item.uom + ' to ' + item.name + '. ✅', 'success');
+            }
+
+            function openSaleModal(itemId) {
+                const item = APP.inventory.find(function(i) { return i.id === itemId; });
+                if (!item) return;
+                document.getElementById('sale-item-name-display').textContent = item.name;
+                document.getElementById('sale-current-stock').textContent = item.qtyOnHand + ' ' + item.uom;
+                document.getElementById('sale-qty').value = '1';
+                document.getElementById('sale-item-id').value = itemId;
+                openModal('modal-sale');
+                setTimeout(function() { const q = document.getElementById('sale-qty');
+                    q.focus();
+                    q.select(); }, 350);
+            }
+
+            function confirmSale() {
+                const itemId = document.getElementById('sale-item-id').value;
+                const qty = parseInt(document.getElementById('sale-qty').value) || 0;
+                const item = APP.inventory.find(function(i) { return i.id === itemId; });
+                if (!item || qty <= 0) { showToast('Enter valid qty.', 'error'); return; }
+                if (qty > item.qtyOnHand) { showToast('Not enough stock! Only ' + item.qtyOnHand + ' ' + item.uom + '.',
+                        'error'); return; }
+                item.qtyOnHand -= qty;
+                item.stockSold += qty;
+                saveAppState();
+                closeModal('modal-sale');
+                renderInventory();
+                updateDashboardStats();
+                showToast('Sold ' + qty + ' ' + item.uom + ' of ' + item.name + '. 💰', 'success');
+            }
+
+            function populateVarianceSelect() {
+                const s = document.getElementById('variance-item-select');
+                if (!s) return;
+                s.innerHTML = '<option value="">-- Choose an item --</option>' + APP.inventory.map(function(i) { return '<option value="' +
+                        i.id + '">' + i.name + ' (System: ' + i.qtyOnHand + ' ' + i.uom + ')</option>'; }).join(
+                    '');
+                document.getElementById('var-physical-count').value = '';
+                document.getElementById('var-variance-display').textContent = '—';
+                document.getElementById('var-badge').style.display = 'none';
+                document.getElementById('btn-save-variance').disabled = true;
+                document.getElementById('variance-card').style.display = 'none';
+            }
+
+            function updateVariancePreview() {
+                const s = document.getElementById('variance-item-select');
+                const pc = parseInt(document.getElementById('var-physical-count').value);
+                if (!s.value) { document.getElementById('variance-card').style.display = 'none';
+                    document.getElementById('btn-save-variance').disabled = true; return; }
+                const item = APP.inventory.find(function(i) { return i.id === s.value; });
+                if (!item) return;
+                document.getElementById('variance-card').style.display = '';
+                const ss = item.stockReceived - item.stockSold;
+                document.getElementById('var-system-stock').textContent = ss + ' ' + item.uom;
+                if (isNaN(pc)) { document.getElementById('var-variance-display').textContent = '—';
+                    document.getElementById('var-badge').style.display = 'none';
+                    document.getElementById('btn-save-variance').disabled = true; return; }
+                const v = pc - ss;
+                document.getElementById('var-variance-display').textContent = (v >= 0 ? '+' : '') + v + ' ' + item
+                .uom;
+                document.getElementById('var-variance-display').className = 'variance-value ' + (v > 0 ? 'positive' : v <
+                    0 ? 'negative' : '');
+                const b = document.getElementById('var-badge');
+                b.style.display = 'inline-block';
+                if (v === 0) { b.textContent = '✅ Perfect Match';
+                    b.className = 'variance-badge ok'; } else if (Math.abs(v) <= 2) { b.textContent =
+                        '⚠️ Minor Variance';
+                    b.className = 'variance-badge warn'; } else { b.textContent = '🚨 Significant Variance';
+                    b.className = 'variance-badge bad'; }
+                document.getElementById('btn-save-variance').disabled = false;
+            }
+
+            function saveVariance() {
+                const s = document.getElementById('variance-item-select');
+                const pc = parseInt(document.getElementById('var-physical-count').value);
+                const item = APP.inventory.find(function(i) { return i.id === s.value; });
+                if (!item || isNaN(pc)) return;
+                const ss = item.stockReceived - item.stockSold;
+                const v = pc - ss;
+                item.lastVariance = v;
+                item.qtyOnHand = pc;
+                item.stockReceived = pc + item.stockSold;
+                saveAppState();
+                updateDashboardStats();
+                populateVarianceSelect();
+                document.getElementById('variance-card').style.display = 'none';
+                document.getElementById('btn-save-variance').disabled = true;
+                showToast((v === 0 ? '✅' : '⚠️') + ' Saved. Variance: ' + (v >= 0 ? '+' : '') + v + ' ' + item.uom +
+                    '.', 'success');
+            }
+
+            function openScanner() { navigateTo('screen-scanner');
+                setTimeout(function() { startScanner(); }, 400); }
+
+            function startScanner() {
+                if (APP.isScanning) return;
+                const c = document.getElementById('scanner-container');
+                if (!c) return;
+                c.innerHTML = '<div class="scanner-frame"></div>';
+                if (typeof Html5Qrcode === 'undefined') { showToast('Scanner loading... Try again.', 'error'); return; }
+                try {
+                    const hq = new Html5Qrcode('scanner-container');
+                    APP.scannerInstance = hq;
+                    hq.start({ facingMode: 'environment' }, { fps: 10, qrbox: { width: 250, height: 180 },
+                        formatsToSupport: [Html5QrcodeSupportedFormats.EAN_13], aspectRatio: 1.5 },
+                        function(decodedText) {
+                            const barcode = decodedText.trim();
+                            if (APP.scannerInstance && APP.isScanning) APP.scannerInstance.pause(true);
+                            const ei = APP.inventory.find(function(i) { return i.barcode ===
+                                barcode; });
+                            const ra = document.getElementById('scanner-result-area');
+                            if (!ra) return;
+                            ra.style.display = '';
+                            if (ei) {
+                                ra.className = 'scanner-result';
+                                ra.innerHTML = '<p>📦 <strong>' + escapeHTML(ei.name) +
+                                    '</strong></p><p style="font-size:13px;">Stock: ' + ei.qtyOnHand +
+                                    ' ' + ei.uom + '</p><p style="font-size:12px;color:var(--gray-500);">Barcode: ' +
+                                    barcode +
+                                    '</p><div style="display:flex;gap:8px;margin-top:12px;"><button class="btn btn-primary btn-sm" style="flex:1;" onclick="quickSaleFromScan(\'' +
+                                    ei.id +
+                                    '\')">💰 Sell</button><button class="btn btn-outline btn-sm" style="flex:1;" onclick="quickRestockFromScan(\'' +
+                                    ei.id +
+                                    '\')">📥 Restock</button></div><button class="btn btn-ghost btn-sm btn-block" style="margin-top:6px;" onclick="resumeScanner()">Scan Again</button>';
+                                showToast('Found: ' + ei.name + ' ✅', 'success');
+                            } else {
+                                ra.className = 'scanner-result new-item';
+                                ra.innerHTML = '<p>🆕 <strong>New Barcode</strong></p><p style="font-size:13px;">Not in inventory.</p><p style="font-size:16px;font-family:monospace;font-weight:700;">' +
+                                    barcode +
+                                    '</p><div style="display:flex;gap:8px;margin-top:12px;"><button class="btn btn-primary btn-sm" style="flex:1;" onclick="addItemFromScan(\'' +
+                                    barcode +
+                                    '\')">➕ Create Item</button></div><button class="btn btn-ghost btn-sm btn-block" style="margin-top:6px;" onclick="resumeScanner()">Scan Again</button>';
+                            }
+                        },
+                        function() {}).then(function() {
+                        APP.isScanning = true;
+                        document.getElementById('btn-start-scan').style.display = 'none';
+                        document.getElementById('btn-stop-scan').style.display = '';
+                        document.getElementById('scanner-result-area').style.display = 'none';
+                    }).catch(function(e) { showToast('Camera error. Check permissions.', 'error'); });
+                } catch (e) { showToast('Scanner unavailable.', 'error'); }
+            }
+
+            function stopScanner() {
+                if (APP.scannerInstance && APP.isScanning) APP.scannerInstance.stop().then(function() { APP.isScanning =
+                        false;
+                    APP.scannerInstance = null;
+                    document.getElementById('scanner-container').innerHTML =
+                        '<p style="color:var(--gray-400);text-align:center;padding:32px;">Stopped.</p>';
+                    document.getElementById('btn-start-scan').style.display = '';
+                    document.getElementById('btn-stop-scan').style.display = 'none'; }).catch(function() { APP
+                        .isScanning = false;
+                    APP.scannerInstance = null; });
+                else { document.getElementById('btn-start-scan').style.display = '';
+                    document.getElementById('btn-stop-scan').style.display = 'none'; }
+            }
+
+            function resumeScanner() {
+                document.getElementById('scanner-result-area').style.display = 'none';
+                if (APP.scannerInstance && APP.isScanning) APP.scannerInstance.resume();
+            }
+
+            function addItemFromScan(barcode) {
+                stopScanner();
+                document.getElementById('modal-item-title').textContent = '➕ Add from Barcode';
+                document.getElementById('add-item-name').value = '';
+                document.getElementById('add-item-uom').value = '';
+                document.getElementById('add-item-qty').value = '0';
+                document.getElementById('add-item-barcode').value = barcode;
+                document.getElementById('edit-item-id').value = '';
+                openModal('modal-item');
+                setTimeout(function() { document.getElementById('add-item-name').focus(); }, 350);
+            }
+
+            function quickSaleFromScan(id) { stopScanner();
+                openSaleModal(id); }
+
+            function quickRestockFromScan(id) { stopScanner();
+                openRestockModal(id); }
+
+            function seedDemoData() {
+                if (APP.inventory.length === 0 && APP.currentUser) {
+                    [{ name: 'Maize Meal 5kg', uom: 'kg', qty: 45, barcode: '6001234567890' }, { name: 'Cooking Oil 2L',
+                        uom: 'L', qty: 30, barcode: '6009876543210' }, { name: 'Brown Sugar 1kg', uom: 'kg', qty: 25,
+                        barcode: '6001112223330' }, { name: 'Long Life Milk 1L', uom: 'L', qty: 50,
+                        barcode: '6004445556660' }, { name: 'Bread Loaf White', uom: 'ea', qty: 20,
+                        barcode: '6007778889990' }, { name: 'Canned Beans 410g', uom: 'g', qty: 60,
+                        barcode: '6003334445550' }, { name: 'Rice 2kg', uom: 'kg', qty: 15,
+                        barcode: '6006667778880' }, { name: 'Eggs (Tray 30)', uom: 'dz', qty: 8,
+                        barcode: '6009990001110' }
+                    ].forEach(function(d) {
+                        APP.inventory.push({ id: String(APP.nextId++), name: d.name, uom: d.uom, qtyOnHand: d.qty,
+                            stockReceived: d.qty + Math.floor(Math.random() * 20), stockSold: Math.floor(Math
+                                .random() * 20),
+                            barcode: d.barcode, color: getRandomColor(), createdAt: new Date().toISOString(),
+                            lastVariance: null });
+                    });
+                    saveAppState();
+                }
+            }
+
+            [
+                'showScreen', 'navigateTo', 'handleLogin', 'handleSendOTP', 'handleVerifyOTP', 'handleSetPIN',
+                'handleLogout', 'goToDashboard', 'openAddItemModal', 'openEditItemModal', 'saveItem', 'deleteItem',
+                'openRestockModal', 'confirmRestock', 'openSaleModal', 'confirmSale', 'openItemActions', 'closeModal',
+                'renderInventory', 'updateVariancePreview', 'saveVariance', 'openScanner', 'startScanner',
+                'stopScanner', 'resumeScanner', 'addItemFromScan', 'quickSaleFromScan', 'quickRestockFromScan'
+            ].forEach(function(fn) { window[fn] = eval(fn); });
+
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initApp);
+            else initApp();
+
+            console.log('🚀 On Track — Ready for Android');
+            console.log('📱 PWA: Install from Chrome menu → "Add to Home Screen"');
+            console.log('📦 APK: Use PWABuilder.com or Capacitor to wrap as native app');
+        })();
+    </script>
+</body>
+</html>
